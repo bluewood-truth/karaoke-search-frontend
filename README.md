@@ -1,4 +1,4 @@
-# KaraokeSearch(가칭)
+KaraokeSearch(가칭)
 
 ![Typescript][ts-badge] ![License][mit-badge]
 
@@ -15,8 +15,12 @@
 ## Todo
 
 - [ ] SPA를 위한 Router 작성
+- [ ] Custom Component 개발
+  - [ ] Box
+  - [ ] Button
+  - [ ] Input
+- [ ] 내비게이션 바 구성
 - [ ] 메인 화면 구성
-- [ ] 검색 패널 구성
 - [ ] 검색 결과 화면 구성
 - [ ] 로그인 화면 구성
 - [ ] 회원가입 화면 구성
