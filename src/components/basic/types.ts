@@ -5,5 +5,3 @@ export interface Map {
 }
 
 export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {}
