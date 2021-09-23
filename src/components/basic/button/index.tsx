@@ -9,16 +9,19 @@ import colors from '../colors';
 
 const buttonSizeProps: Map = {
   sm: {
-    fontSize: fontSizes['xs'],
-    padding: `${spacing['xs']} ${spacing['sm']}`,
+    fontSize: fontSizes['sm'],
+    padding: `0 ${spacing['sm']}`,
+    height: spacing['md'],
   },
   md: {
-    fontSize: fontSizes['sm'],
-    padding: `${spacing['sm']} ${spacing['md']}`,
+    fontSize: fontSizes['md'],
+    padding: `0 ${spacing['md']}`,
+    height: spacing['lg'],
   },
   lg: {
-    fontSize: fontSizes['md'],
-    padding: `${spacing['md']} ${spacing['lg']}`,
+    fontSize: fontSizes['lg'],
+    padding: `0 ${spacing['lg']}`,
+    height: spacing['xl'],
   },
 };
 
@@ -60,35 +63,34 @@ const getStyleFromProps = (props: ButtonProps) => {
   const size = props.size ? props.size : 'md';
   const variant = props.variant ? props.variant : 'solid';
 
-  const fontSize = buttonSizeProps[size]?.fontSize;
-  const padding = buttonSizeProps[size]?.padding;
+  const {fontSize, padding, height} = buttonSizeProps[size];
   const variantProps = getVariantProps(theme, variant);
 
   return {
     theme,
+    variantProps,
     fontSize,
     padding,
-    variantProps,
+    height,
   };
 };
 
 const Styled = (props: ButtonProps) => {
-  const styles = getStyleFromProps(props);
+  const {theme, variantProps, ...others} = getStyleFromProps(props);
 
   return {
     fontWeight: fontWeights['semibold'],
     cursor: 'pointer',
     opacity: props.disabled ? 0.7 : 1,
-    fontSize: styles.fontSize,
-    padding: styles.padding,
-    ...styles.theme.shape,
-    ...styles.variantProps.main,
+    ...others,
+    ...theme.shape,
+    ...variantProps.main,
     transition: 'background-color 0.2s',
     '&:hover': {
-      ...styles.variantProps.hover,
+      ...variantProps.hover,
     },
     '&:active': {
-      ...styles.variantProps.active,
+      ...variantProps.active,
     },
   };
 };
