@@ -129,7 +129,7 @@ const getBorder = (props: BoxProps) => {
   return {border, borderWidth, borderRadius};
 };
 
-const Styled = (props: BoxProps) => {
+export const Styled = (props: BoxProps) => {
   const layout = getLayoutProps(props);
   const fontProps = getFontProps(props);
   const sizes = getSize(props);
