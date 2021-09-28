@@ -1,7 +1,10 @@
 import React from 'react';
 import {Theme} from '../theme';
+import {BoxModelProps} from '../types';
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.HTMLAttributes<HTMLButtonElement>,
+    BoxModelProps {
   size?: 'sm' | 'md' | 'lg';
   variant?: ButtonVariant;
   enableElevation?: boolean;

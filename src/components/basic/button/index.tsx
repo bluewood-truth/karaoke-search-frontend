@@ -4,8 +4,10 @@ import isObjectEmpty from 'utils/isObjectEmpty';
 import {ButtonProps, ButtonVariant} from './types';
 import defaultTheme, {Theme} from '../theme';
 import {fontSizes, fontWeights, spacing} from '../units';
-import {Map} from '../types';
+import {BoxModelProps, Map} from '../types';
 import colors from '../colors';
+import {Styled as BoxStyled} from '../box';
+import filterUndefined from 'utils/filterUndefined';
 
 const buttonSizeProps: Map = {
   sm: {
@@ -66,26 +68,29 @@ const getStyleFromProps = (props: ButtonProps) => {
   const {fontSize, padding, height} = buttonSizeProps[size];
   const variantProps = getVariantProps(theme, variant);
 
+  const boxModelProps: BoxModelProps = props;
+  const boxModelStyle = filterUndefined(BoxStyled(boxModelProps));
+
   return {
-    theme,
-    variantProps,
-    fontSize,
-    padding,
-    height,
+    ...{theme, variantProps, fontSize, padding, height},
+    ...boxModelStyle,
   };
 };
 
 const Styled = (props: ButtonProps) => {
   const {theme, variantProps, ...others} = getStyleFromProps(props);
-
-  return {
+  const defaultStyle = {
     fontWeight: fontWeights['semibold'],
     cursor: 'pointer',
     opacity: props.disabled ? 0.7 : 1,
-    ...others,
+    transition: 'background-color 0.2s',
+  };
+
+  return {
+    ...defaultStyle,
     ...theme.shape,
     ...variantProps.main,
-    transition: 'background-color 0.2s',
+    ...others,
     '&:hover': {
       ...variantProps.hover,
     },
@@ -95,7 +100,7 @@ const Styled = (props: ButtonProps) => {
   };
 };
 
-const ignoredProps: string[] = ['color', 'backgroundColor', 'border'];
+const ignoredProps: string[] = [];
 
 const options = {
   shouldForwardProp: (prop: any) =>
