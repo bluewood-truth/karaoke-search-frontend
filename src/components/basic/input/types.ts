@@ -1,6 +1,9 @@
-import { Theme } from "../theme";
+import {Theme} from '../theme';
+import { BoxModelProps } from '../types';
 
-export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.HTMLAttributes<HTMLInputElement>,
+    BoxModelProps {
   size?: 'sm' | 'md' | 'lg';
   variant?: InputVariant;
   disabled?: boolean;

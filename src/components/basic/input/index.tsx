@@ -3,9 +3,11 @@ import isPropValid from '@emotion/is-prop-valid';
 import isObjectEmpty from 'utils/isObjectEmpty';
 import colors from '../colors';
 import defaultTheme, {Theme} from '../theme';
-import {Map} from '../types';
+import {BoxModelProps, Map} from '../types';
 import {fontSizes, fontWeights, spacing} from '../units';
 import {InputProps, InputVariant} from './types';
+import {Styled as BoxStyled} from '../box';
+import filterUndefined from 'utils/filterUndefined';
 
 const inputSizeProps: Map = {
   sm: {
@@ -63,12 +65,12 @@ const getStyleFromProps = (props: InputProps) => {
   const {fontSize, padding, height} = inputSizeProps[size];
   const variantProps = getVariantProps(theme, variant);
 
+  const boxModelProps: BoxModelProps = props;
+  const boxModelStyle = filterUndefined(BoxStyled(boxModelProps));
+
   return {
-    theme,
-    variantProps,
-    fontSize,
-    padding,
-    height,
+    ...{theme, variantProps, fontSize, padding, height},
+    ...boxModelStyle,
   };
 };
 
@@ -76,12 +78,14 @@ const Styled = (props: InputProps) => {
   const {theme, variantProps, ...others} = getStyleFromProps(props);
 
   return {
-    fontWeight: fontWeights.medium,
-    cursor: 'text',
-    opacity: props.disabled ? 0.7 : 1,
-    ...others,
+    ...{
+      fontWeight: fontWeights.medium,
+      cursor: 'text',
+      opacity: props.disabled ? 0.7 : 1,
+    },
     ...theme.shape,
     ...variantProps.main,
+    ...others,
     transition: 'background-color 0.2s, border 0.2s, box-shadow 0.2s',
     '&:hover': {
       ...variantProps.hover,
@@ -96,7 +100,7 @@ const Styled = (props: InputProps) => {
   };
 };
 
-const ignoredProps: string[] = ['color', 'backgroundColor', 'border'];
+const ignoredProps: string[] = [];
 
 const options = {
   shouldForwardProp: (prop: any) =>
