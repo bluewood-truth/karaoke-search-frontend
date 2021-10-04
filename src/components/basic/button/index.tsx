@@ -6,8 +6,8 @@ import defaultTheme, {Theme} from '../theme';
 import {fontSizes, fontWeights, spacing} from '../units';
 import {BoxModelProps, Map} from '../types';
 import colors from '../colors';
-import {Styled as BoxStyled} from '../box';
 import filterUndefined from 'utils/filterUndefined';
+import {BoxStyled} from '../_commonStyled/boxStyled';
 
 const buttonSizeProps: Map = {
   sm: {

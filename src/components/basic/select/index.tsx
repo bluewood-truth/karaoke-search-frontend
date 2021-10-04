@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
-import { SelectProps } from './types';
-import { Styled as InputStyled } from '../input';
+import {SelectProps} from './types';
+import {InputStyled} from '../_commonStyled/inputStyled';
 
 const Styled = (props: SelectProps) => {
   return InputStyled(props);
