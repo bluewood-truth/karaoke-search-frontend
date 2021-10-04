@@ -8,6 +8,7 @@ import {fontSizes, fontWeights, spacing} from '../units';
 import {InputProps, InputVariant} from './types';
 import {Styled as BoxStyled} from '../box';
 import filterUndefined from 'utils/filterUndefined';
+import {SelectProps} from '../select/types';
 
 const inputSizeProps: Map = {
   sm: {
@@ -56,7 +57,7 @@ const getVariantProps = (theme: Theme, variant: InputVariant) => {
   return props;
 };
 
-const getStyleFromProps = (props: InputProps) => {
+const getStyleFromProps = (props: InputProps | SelectProps) => {
   const theme =
     !props.theme || isObjectEmpty(props.theme) ? defaultTheme : props.theme;
   const size = props.size ? props.size : 'md';
@@ -74,7 +75,7 @@ const getStyleFromProps = (props: InputProps) => {
   };
 };
 
-const Styled = (props: InputProps) => {
+export const Styled = (props: InputProps | SelectProps) => {
   const {theme, variantProps, ...others} = getStyleFromProps(props);
 
   return {
