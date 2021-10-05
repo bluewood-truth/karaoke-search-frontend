@@ -35,13 +35,13 @@ const getVariantProps = (theme: Theme, variant: InputVariant) => {
       color: colors.black,
     },
     hover: {
-      border: `1px solid ${colors.gray[2]}`,
+      borderColor: colors.gray[2],
       backgroundColor: colors.white,
       color: colors.black,
     },
     focus: {
-      border: `1px solid ${colorScheme.main[3]}`,
-      boxShadow: `0 0 0 1pt ${colorScheme.main[3]}`,
+      borderColor: colorScheme.main[3],
+      boxShadow: `0 0 0 1px ${colorScheme.main[3]}`,
       backgroundColor: colors.white,
       color: colors.black,
     },
