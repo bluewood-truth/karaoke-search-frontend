@@ -1,41 +1,29 @@
 import axios from 'axios';
-import {useCallback, useEffect, useState} from 'react';
+import {useMemo} from 'react';
 import {SearchQuery, Song} from 'types/domain';
+import useAsync from './_common/useAsync';
 
-const BASE_URL = 'https://api.airtable.com/v0/appHMD03gIgaB6RFM/song_list';
-const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
+const BASE_URL = 'http://34.64.87.191:8080/api/search';
 
 axios.interceptors.request.use(async (config) => {
-  if (!config.headers['Authorization']) {
-    config.headers['Authorization'] = `Bearer ${AIRTABLE_API_KEY}`;
-  }
   config.headers['Content-Type'] = 'application/json';
-
   return config;
 });
 
-const useSearch = (query: SearchQuery | null) => {
-  const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState<Song[]>([]);
-
-  const fetchData = useCallback(async () => {
-    try {
-      setLoading(true);
-      setData([]);
-      const response = await axios.get(BASE_URL);
-      setData(response.data.records.map((record: any) => record.fields));
-    } catch (e: any) {
-      console.log(e.message);
-    }
-
-    setLoading(false);
+const useSearch = (query: SearchQuery) => {
+  const {isLoading, data, isSuccess} = useAsync<Song[]>(() => {
+    return axios.get<Song[]>(BASE_URL, {params: query}).then((res) => res.data);
   }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const searchResult = useMemo(() => {
+    if (isSuccess) {
+      return data as Song[];
+    } else {
+      return [];
+    }
+  }, [isSuccess, data]);
 
-  return {isLoading, data};
+  return {isLoading, searchResult};
 };
 
 export default useSearch;
