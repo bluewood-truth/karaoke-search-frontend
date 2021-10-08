@@ -1,4 +1,4 @@
-const parseQuery = (query: string): { [key: string]: any } => {
+const parseQuery = (query: string): {[key: string]: string | undefined} => {
   if (query === '' || query[0] !== '?') {
     return {};
   }
