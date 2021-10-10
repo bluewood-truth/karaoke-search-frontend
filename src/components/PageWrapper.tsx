@@ -1,7 +1,5 @@
-import {Box} from './basic';
-
 const PageWrapper = (props: {children?: React.ReactNode}) => {
-  return <Box className='pageWrapper'>{props.children}</Box>;
+  return <main className='pageWrapper'>{props.children}</main>;
 };
 
 export default PageWrapper;
