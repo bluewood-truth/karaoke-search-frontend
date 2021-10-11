@@ -3,10 +3,10 @@ const colors = {
   black: '#000',
   warning: '#BE1F0B',
   gray: {
-    1: '#CED3D7',
-    2: '#84909A',
-    3: '#535D65',
-    4: '#40484F',
+    1: '#F3F4F7',
+    2: '#E7E8EE',
+    3: '#C2C7D6',
+    4: '#9EA5BD',
   },
   cyan: {
     1: '#04B4B1',
