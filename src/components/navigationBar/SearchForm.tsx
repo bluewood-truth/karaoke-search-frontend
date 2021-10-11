@@ -6,6 +6,17 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router';
 import parseQuery from 'utils/parseQuery';
 
+const karaokeList = [
+  {value: 'TJ', label: 'TJ'},
+  {value: 'KY', label: 'KY'},
+];
+
+const searchByList = [
+  {value: 'TITLE', label: '곡 제목'},
+  {value: 'SINGER', label: '가수'},
+  {value: 'NUMBER', label: '곡 번호'},
+];
+
 const SearchForm = () => {
   const history = useHistory();
   const [karaoke, setKaraoke] = useState('');
@@ -27,8 +38,8 @@ const SearchForm = () => {
   useEffect(() => {
     if (history.location.pathname === '/searchResult') {
       const query = parseQuery(history.location.search);
-      setKaraoke(query.karaoke ? query.karaoke : '');
-      setSearchBy(query.searchBy ? query.searchBy : '');
+      setKaraoke(query.karaoke ? query.karaoke : karaokeList[0].value);
+      setSearchBy(query.searchBy ? query.searchBy : searchByList[0].value);
       setKeyword(query.keyWord ? query.keyWord : '');
     }
   }, [history.location]);
@@ -50,8 +61,13 @@ const SearchForm = () => {
           }}
           value={karaoke}
         >
-          <option value='TJ'>TJ</option>
-          <option value='KY'>KY</option>
+          {karaokeList.map((item, index) => {
+            return (
+              <option key={index} value={item.value}>
+                {item.label}
+              </option>
+            );
+          })}
         </Select>
         <Select
           id='searchBy'
@@ -63,9 +79,13 @@ const SearchForm = () => {
           }}
           value={searchBy}
         >
-          <option value='TITLE'>곡 제목</option>
-          <option value='SINGER'>가수</option>
-          <option value='NUMBER'>곡 번호</option>
+          {searchByList.map((item, index) => {
+            return (
+              <option key={index} value={item.value}>
+                {item.label}
+              </option>
+            );
+          })}
         </Select>
         <Input
           id='keyword'
