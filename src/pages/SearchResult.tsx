@@ -14,19 +14,23 @@ const SearchResult = () => {
   const [isLastPage, setIsLastPage] = useState(false);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setLoading] = useState(false);
   const history = useHistory();
 
   const initialize = useCallback(() => {
+    setSongList([]);
     setIsLastPage(false);
     setPage(1);
   }, []);
 
   const fetch = useCallback(async (searchQuery: string, page: number) => {
+    setLoading(true);
     const data = await axios
       .get(`${SEARCH_API_URL}${searchQuery}&page=${page}`)
       .then((res) => res.data);
 
     setIsLastPage(data.length < SONG_COUNT_PER_PAGE);
+    setLoading(false);
     return data;
   }, []);
 
@@ -51,7 +55,7 @@ const SearchResult = () => {
 
   return (
     <PageWrapper>
-      <SongTable songList={songList} />
+      <SongTable songList={songList} isLoading={isLoading} />
       <Button onClick={fetchMore} {...(isLastPage && {display: 'none'})}>
         더보기
       </Button>
