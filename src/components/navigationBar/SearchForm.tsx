@@ -19,8 +19,8 @@ const searchByList = [
 
 const SearchForm = () => {
   const history = useHistory();
-  const [karaoke, setKaraoke] = useState('');
-  const [searchBy, setSearchBy] = useState('');
+  const [karaoke, setKaraoke] = useState(karaokeList[0].value);
+  const [searchBy, setSearchBy] = useState(searchByList[0].value);
   const [keyword, setKeyword] = useState('');
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
