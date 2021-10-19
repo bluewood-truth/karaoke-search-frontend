@@ -1,9 +1,12 @@
 import {Box} from 'components/basic';
-import { Link } from 'react-router-dom';
+import useSearchForm from 'hooks/useSearchForm';
+import {Link} from 'react-router-dom';
 
 const Logo = () => {
+  const {initialize} = useSearchForm();
+
   return (
-    <Link to='/'>
+    <Link to='/' onClick={initialize}>
       <Box>Logo</Box>
     </Link>
   );
