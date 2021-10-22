@@ -56,9 +56,7 @@ const SearchResult = () => {
   return (
     <PageWrapper>
       <SongTable songList={songList} isLoading={isLoading} />
-      <Button onClick={fetchMore} {...(isLastPage && {display: 'none'})}>
-        더보기
-      </Button>
+      {!isLoading && !isLastPage && <Button onClick={fetchMore}>더보기</Button>}
     </PageWrapper>
   );
 };
