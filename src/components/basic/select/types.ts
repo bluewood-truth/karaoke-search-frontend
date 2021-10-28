@@ -1,4 +1,4 @@
-import {BoxModelProps} from '../types';
+import {BoxModelProps} from '../_commonStyled/types';
 
 export interface SelectProps
   extends React.HTMLAttributes<HTMLSelectElement>,

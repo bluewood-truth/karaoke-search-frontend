@@ -41,8 +41,16 @@ export const sizes = {
   container: '45rem',
 }
 
+export const zIndexes = {
+  hide: -1,
+  auto: 'auto',
+  base: 0,
+  nav: 10,
+}
+
 type Union<T> = T | (string & {});
 export type FontSize = Union<keyof typeof fontSizes>;
 export type FontWeight = Union<keyof typeof fontWeights>;
 export type Spacing = Union<keyof typeof spacing>;
 export type Size = Union<keyof typeof sizes>;
+export type ZIndex = Union<keyof typeof zIndexes>;

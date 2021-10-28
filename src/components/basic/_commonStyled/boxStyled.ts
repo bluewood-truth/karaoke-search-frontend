@@ -1,6 +1,6 @@
 import getUnitValue from 'utils/getUnitValue';
 import {BoxProps} from '../box/types';
-import {fontSizes, fontWeights, sizes, spacing} from '../units';
+import { fontSizes, fontWeights, sizes, spacing, zIndexes } from '../units';
 
 const getMargin = (props: BoxProps) => {
   const {
@@ -95,19 +95,31 @@ const getLayoutProps = (props: BoxProps) => {
     position,
     flex,
     flexDirection,
-    alignItems,
     justifyContent,
+    alignItems,
     boxShadow,
+    transform,
+    top,
+    left,
+    bottom,
+    right,
   } = props;
+  const zIndex = getUnitValue(zIndexes, props.zIndex, zIndexes.base);
 
   return {
     display,
     position,
     flex,
     flexDirection,
-    alignItems,
     justifyContent,
+    alignItems,
     boxShadow,
+    transform,
+    top,
+    left,
+    bottom,
+    right,
+    zIndex,
   };
 };
 

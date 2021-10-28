@@ -1,4 +1,8 @@
-const getUnitValue = (unit: any, key: any | undefined, origin = undefined) => {
+const getUnitValue = (
+  unit: any,
+  key: any | undefined,
+  origin: any = undefined
+) => {
   if (key === undefined) {
     return origin;
   } else if (typeof unit === 'object' && key in unit) {

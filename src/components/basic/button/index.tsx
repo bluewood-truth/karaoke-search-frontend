@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import {ButtonProps} from './types';
 import {fontSizes, fontWeights, spacing} from '../units';
-import {BoxModelProps} from '../types';
+import {BoxModelProps} from '../_commonStyled/types';
 import filterUndefined from 'utils/filterUndefined';
 import {BoxStyled} from '../_commonStyled/boxStyled';
 import {mainColor} from 'components/basic/colors';
