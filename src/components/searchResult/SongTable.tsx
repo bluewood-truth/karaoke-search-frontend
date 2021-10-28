@@ -63,10 +63,10 @@ const SongTableRow = (props: {song: Song}) => {
         alignItems='start'
         flexDirection='column'
       >
-        <Box color={getMainColor()[3]} fontWeight='bold'>
+        <Box color={getMainColor()[4]} fontWeight='bold'>
           {song.title}
         </Box>
-        <Box color={getMainColor()[2]} fontSize='xs'>
+        <Box color={getMainColor()[3]} fontSize='xs'>
           {song.singer}
         </Box>
       </Stack>
