@@ -11,7 +11,7 @@ const IconButton = (
 ) => {
   const {src, width, height, ...buttonProps} = props;
   return (
-    <Button {...buttonProps} padding='0' height='0'>
+    <Button {...buttonProps} padding='0' margin='0'>
       <SvgImage {...{src, width, height}} />
     </Button>
   );

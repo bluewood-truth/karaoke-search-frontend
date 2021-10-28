@@ -9,6 +9,7 @@ const globalStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
+    letter-spacing: -0.05rem;
   }
 
   code {

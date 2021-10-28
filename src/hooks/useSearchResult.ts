@@ -51,6 +51,7 @@ const useSearchResult = () => {
   }, [fetch, initialize, searchQuery, setSongList]);
 
   return {
+    searchQuery,
     isLastPage,
     isLoading,
     songList,

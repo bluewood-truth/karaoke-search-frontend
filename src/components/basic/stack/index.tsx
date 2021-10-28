@@ -5,7 +5,7 @@ import {spacing as spacingUnits} from '../units';
 import StackProps from './types';
 
 const Stack = (props: StackProps) => {
-  let { spacing, children, direction, ...others } = props;
+  let {spacing, children, direction, divider, dividerProps, ...others} = props;
 
   if (direction === undefined) {
     direction = 'vertical';

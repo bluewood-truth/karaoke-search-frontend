@@ -104,6 +104,7 @@ const getLayoutProps = (props: BoxProps) => {
     left,
     bottom,
     right,
+    textAlign
   } = props;
   const zIndex = getUnitValue(zIndexes, props.zIndex, zIndexes.base);
 
@@ -120,6 +121,7 @@ const getLayoutProps = (props: BoxProps) => {
     left,
     bottom,
     right,
+    textAlign,
     zIndex,
   };
 };
