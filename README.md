@@ -1,8 +1,15 @@
-# KaraokeSearch(가칭)
+# 노래방 곡 검색엔진 "노래찾기" 웹 프론트엔드
 
-![Typescript][ts-badge] ![License][mit-badge]
+노래방 곡 검색엔진 "노래찾기"의 웹 프론트엔드 개발 Repository입니다.
 
-노래방 곡 검색 서비스 KaraokeSearch(가칭)의 웹 프론트엔드 개발 Repository입니다.
+<br>
+
+## Stack
+
+- [React.js](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Emotion](https://emotion.sh/docs/introduction)
+- [Recoil](https://recoiljs.org/ko/)
 
 <br>
 
@@ -14,20 +21,14 @@
 
 ## Todo
 
-- [ ] SPA를 위한 Router 작성
-- [ ] Custom Component 개발
-  - [ ] Box
-  - [ ] Button
-  - [ ] Input
-- [ ] 내비게이션 바 구성
-- [ ] 메인 화면 구성
-- [ ] 검색 결과 화면 구성
-- [ ] 로그인 화면 구성
-- [ ] 회원가입 화면 구성
-- [ ] 마이페이지 화면 구성
+- [x] SPA를 위한 Router 작성
+- [x] Custom Component 개발
+- [x] 웹 디자인(Figma)
+- [x] 검색 로직 구현
+- [ ] 마이리스트(로컬) 구현
+- [ ] 로그인 구현
+- [ ] 마이리스트(서버) 구현
 
 <br>
 
-[ts-badge]: https://img.shields.io/badge/%3C%2F%3E-Typescript-blue
-[mit-badge]: https://img.shields.io/badge/license-MIT-green
 [github-badge]: https://img.shields.io/badge/Github-black.svg?&style=for-the-badge&logo=github&logoColor=white&link=https://github.com/bluewood-truth/
