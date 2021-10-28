@@ -1,13 +1,28 @@
-import {Box} from 'components/basic';
+import {Box, Flex} from 'components/basic';
 import Logo from './Logo';
 import SearchForm from './SearchForm';
+import UserNav from './UserNav';
 
 const NavigationBar = () => {
   return (
-    <Box style={{display: 'flex'}}>
-      <Logo />
-      <SearchForm />
-    </Box>
+    <Flex
+      paddingX='20px'
+      paddingY='16px'
+      justifyContent='center'
+      alignItems='center'
+      flexDirection='column'
+      boxShadow='0px 0px 15px rgba(0, 0, 0, 0.25);'
+    >
+      <Box position='absolute' zIndex='base'>
+        <Flex width='container' justifyContent='space-between'>
+          <Logo />
+          <UserNav />
+        </Flex>
+      </Box>
+      <Flex justifyContent='center' height='100%' zIndex='nav'>
+        <SearchForm />
+      </Flex>
+    </Flex>
   );
 };
 
