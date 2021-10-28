@@ -100,8 +100,15 @@ const getSize = (props: BoxProps) => {
 };
 
 const getLayoutProps = (props: BoxProps) => {
-  const {display, position, flex, flexDirection, alignItems, justifyContent} =
-    props;
+  const {
+    display,
+    position,
+    flex,
+    flexDirection,
+    alignItems,
+    justifyContent,
+    boxShadow,
+  } = props;
 
   return {
     display,
@@ -110,6 +117,7 @@ const getLayoutProps = (props: BoxProps) => {
     flexDirection,
     alignItems,
     justifyContent,
+    boxShadow,
   };
 };
 

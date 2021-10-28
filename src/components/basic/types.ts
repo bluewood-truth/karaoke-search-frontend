@@ -1,3 +1,4 @@
+import React from "react";
 import { FontSize, FontWeight, Size, Spacing } from "./units";
 
 export interface Map {
@@ -11,6 +12,7 @@ export interface BoxModelProps {
   flexDirection?: React.CSSProperties['flexDirection'];
   alignItems?: React.CSSProperties['alignItems'];
   justifyContent?: React.CSSProperties['justifyContent'];
+  boxShadow?: React.CSSProperties['boxShadow'];
 
   color?: string;
   fontSize?: FontSize;
