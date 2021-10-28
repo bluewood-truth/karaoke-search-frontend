@@ -4,3 +4,5 @@ export {default as Flex} from './flex';
 export {default as Stack} from './stack';
 export {default as Select} from './select';
 export {default as Input} from './input';
+
+export {mainColor, accentColor} from './colors';

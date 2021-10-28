@@ -1,19 +1,12 @@
-const colors = {
-  white: '#fff',
-  black: '#000',
-  warning: '#BE1F0B',
-  gray: {
-    1: '#F3F4F7',
-    2: '#E7E8EE',
-    3: '#C2C7D6',
-    4: '#9EA5BD',
-  },
-  cyan: {
-    1: '#04B4B1',
-    2: '#039D9B',
-    3: '#038C8A',
-    4: '#027876',
-  },
+export const mainColor = {
+  0: '#ffffff',
+  1: '#F3F4F7',
+  2: '#B7BFCD',
+  3: '#8795AB',
+  4: '#4B586C',
+  5: '#2A313C',
 };
 
-export default colors;
+export const accentColor = {
+  red: '#EC1F44',
+};

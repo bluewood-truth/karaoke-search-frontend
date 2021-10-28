@@ -1,101 +1,54 @@
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
-import isObjectEmpty from 'utils/isObjectEmpty';
-import {ButtonProps, ButtonVariant} from './types';
-import defaultTheme, {Theme} from '../theme';
+import {ButtonProps} from './types';
 import {fontSizes, fontWeights, spacing} from '../units';
-import {BoxModelProps, Map} from '../types';
-import colors from '../colors';
+import {BoxModelProps} from '../types';
 import filterUndefined from 'utils/filterUndefined';
 import {BoxStyled} from '../_commonStyled/boxStyled';
-
-const buttonSizeProps: Map = {
-  sm: {
-    fontSize: fontSizes['sm'],
-    padding: `0 ${spacing['sm']}`,
-    height: spacing['md'],
-  },
-  md: {
-    fontSize: fontSizes['md'],
-    padding: `0 ${spacing['md']}`,
-    height: spacing['lg'],
-  },
-  lg: {
-    fontSize: fontSizes['lg'],
-    padding: `0 ${spacing['lg']}`,
-    height: spacing['xl'],
-  },
-};
-
-const getVariantProps = (theme: Theme, variant: ButtonVariant) => {
-  const colorScheme = theme.colorScheme;
-  const props = {
-    main: {
-      border: `1px solid ${colorScheme.main[1]}`,
-      backgroundColor: colorScheme.main[1],
-      color: colorScheme.main.contrast,
-    },
-    hover: {
-      border: `1px solid ${colorScheme.main[2]}`,
-      backgroundColor: colorScheme.main[2],
-      color: colorScheme.main.contrast,
-    },
-    active: {
-      border: `1px solid ${colorScheme.main[3]}`,
-      backgroundColor: colorScheme.main[3],
-      color: colorScheme.main.contrast,
-    },
-  };
-
-  if (variant === 'outline') {
-    props.main.backgroundColor = colors.white;
-    props.main.color = colorScheme.main[1];
-    props.hover.backgroundColor = colors.white;
-    props.hover.color = colorScheme.main[2];
-    props.active.backgroundColor = colors.white;
-    props.active.color = colorScheme.main[3];
-  }
-
-  return props;
-};
+import {mainColor} from 'components/basic/colors';
+import hexToRgb from 'utils/hexToRgb';
 
 const getStyleFromProps = (props: ButtonProps) => {
-  const theme =
-    !props.theme || isObjectEmpty(props.theme) ? defaultTheme : props.theme;
-  const size = props.size ? props.size : 'md';
-  const variant = props.variant ? props.variant : 'solid';
-
-  const {fontSize, padding, height} = buttonSizeProps[size];
-  const variantProps = getVariantProps(theme, variant);
-
   const boxModelProps: BoxModelProps = props;
   const boxModelStyle = filterUndefined(BoxStyled(boxModelProps));
 
   return {
-    ...{theme, variantProps, fontSize, padding, height},
     ...boxModelStyle,
   };
 };
 
 const Styled = (props: ButtonProps) => {
-  const {theme, variantProps, ...others} = getStyleFromProps(props);
+  const colorSet = mainColor;
+  const inputStyle = getStyleFromProps(props);
   const defaultStyle = {
-    fontWeight: fontWeights['semibold'],
+    color: colorSet[4],
+    backgroundColor: colorSet[0],
+    fontSize: fontSizes.xs,
+    fontWeight: fontWeights.normal,
+    padding: `${spacing.xs} ${spacing.md}`,
+    border: 'none',
+    borderRadius: spacing.xs,
     cursor: 'pointer',
     opacity: props.disabled ? 0.7 : 1,
-    transition: 'background-color 0.2s',
+    transition: 'color 0.3s, background-color 0.3s, opacity 0.3s',
+    hover: {
+      backgroundColor: `rgb(${hexToRgb(colorSet[1])}, 0.5)`,
+    },
+    active: {
+      backgroundColor: colorSet[1],
+    },
   };
 
   return {
     ...defaultStyle,
-    ...theme.shape,
-    ...variantProps.main,
-    ...others,
+    ...inputStyle,
     '&:hover': {
-      ...variantProps.hover,
+      ...defaultStyle.hover,
+      ...inputStyle.hover,
     },
     '&:active': {
-      ...variantProps.active,
+      ...defaultStyle.active,
+      ...inputStyle.active,
     },
   };
 };
