@@ -98,8 +98,26 @@ const LoadingRow = (props: {isLoading: boolean}) => {
   );
 };
 
+const NoResultRow = () => {
+  return (
+    <Flex justifyContent='center' paddingY='lg'>
+      결과가 없습니다.
+    </Flex>
+  );
+};
+
 const SongTable = (props: {songList: Song[]; isLoading: boolean}) => {
   const {songList, isLoading} = props;
+
+  if (!isLoading && songList.length === 0) {
+    return (
+      <Box className='songTable' width='100%'>
+        <SongTableHead />
+        <NoResultRow />
+      </Box>
+    );
+  }
+
   return (
     <Box className='songTable' width='100%'>
       <SongTableHead />
