@@ -12,4 +12,4 @@ export interface ButtonProps
   theme?: Theme;
 }
 
-export type ButtonVariant = 'solid' | 'outline';
+export type ButtonVariant = 'solid' | 'outline' | 'none';

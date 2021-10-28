@@ -1,4 +1,5 @@
 import React from 'react';
+import getUnitValue from 'utils/getUnitValue';
 import Flex from '../flex';
 import {spacing as spacingUnits} from '../units';
 import StackProps from './types';
@@ -26,10 +27,10 @@ const Stack = (props: StackProps) => {
           child as React.ReactElement<any>,
           direction === 'vertical'
             ? {
-                marginTop: spacingUnits[spacing],
+                marginTop: getUnitValue(spacingUnits, spacing),
               }
             : {
-                marginLeft: spacingUnits[spacing],
+                marginLeft: getUnitValue(spacingUnits, spacing),
               }
         );
       })}

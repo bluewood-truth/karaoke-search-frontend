@@ -1,16 +1,6 @@
+import getUnitValue from 'utils/getUnitValue';
 import {BoxProps} from '../box/types';
-import {Map} from '../types';
 import {fontSizes, fontWeights, sizes, spacing} from '../units';
-
-const getUnitValue = (unit: Map, key: any | undefined, origin = undefined) => {
-  if (key === undefined) {
-    return origin;
-  } else if (key in unit) {
-    return unit[key];
-  } else {
-    return key;
-  }
-};
 
 const getMargin = (props: BoxProps) => {
   const {

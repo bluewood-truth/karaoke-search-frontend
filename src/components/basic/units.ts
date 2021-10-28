@@ -1,6 +1,4 @@
-import { Map } from "./types";
-
-export const fontSizes: Map = {
+export const fontSizes = {
   xxs: '0.7rem',
   xs: '0.79rem',
   sm: '0.889rem',
@@ -10,7 +8,7 @@ export const fontSizes: Map = {
   xxl: '1.424rem',
 };
 
-export const fontWeights: Map = {
+export const fontWeights = {
   thin: 200,
   light: 300,
   normal: 400,
@@ -20,7 +18,7 @@ export const fontWeights: Map = {
   extrabold: 800,
 };
 
-export const spacing: Map = {
+export const spacing = {
   none: 0,
   xxs: '0.125em',
   xs: '0.25rem',
@@ -31,7 +29,7 @@ export const spacing: Map = {
   xxl: '8rem',
 };
 
-export const sizes: Map = {
+export const sizes = {
   max: 'max-content',
   min: 'min-content',
   full: '100%',
@@ -43,7 +41,8 @@ export const sizes: Map = {
   container: '45rem',
 }
 
-export type FontSize = keyof typeof fontSizes | string;
-export type FontWeight = keyof typeof fontWeights | string;
-export type Spacing = keyof typeof spacing | string;
-export type Size = keyof typeof sizes | string;
+type Union<T> = T | (string & {});
+export type FontSize = Union<keyof typeof fontSizes>;
+export type FontWeight = Union<keyof typeof fontWeights>;
+export type Spacing = Union<keyof typeof spacing>;
+export type Size = Union<keyof typeof sizes>;
