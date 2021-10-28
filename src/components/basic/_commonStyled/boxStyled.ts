@@ -1,7 +1,7 @@
 import getUnitValue from 'utils/getUnitValue';
 import {BoxProps} from '../box/types';
 import {fontSizes, fontWeights, sizes, spacing, zIndexes} from '../units';
-import {BackgroundProps} from './types';
+import {BackgroundProps, BoxModelPropsUnion} from './types';
 
 const getMargin = (props: BoxProps) => {
   const {
@@ -104,7 +104,8 @@ const getLayoutProps = (props: BoxProps) => {
     left,
     bottom,
     right,
-    textAlign
+    textAlign,
+    letterSpacing,
   } = props;
   const zIndex = getUnitValue(zIndexes, props.zIndex, zIndexes.base);
 
@@ -122,6 +123,7 @@ const getLayoutProps = (props: BoxProps) => {
     bottom,
     right,
     textAlign,
+    letterSpacing,
     zIndex,
   };
 };
@@ -163,7 +165,7 @@ const getBackground = (props: BackgroundProps) => {
   };
 };
 
-export const BoxStyled = (props: BoxProps) => {
+const getProps = (props: BoxModelPropsUnion) => {
   const layout = getLayoutProps(props);
   const fontProps = getFontProps(props);
   const sizes = getSize(props);
@@ -180,5 +182,21 @@ export const BoxStyled = (props: BoxProps) => {
     ...paddings,
     ...border,
     ...background,
+  };
+};
+
+export const BoxStyled = (props: BoxProps) => {
+  const normalProps = getProps(props);
+  const hoverProps = props.hover ? getProps(props.hover) : {};
+  const activeProps = props.active ? getProps(props.active) : {};
+
+  return {
+    ...normalProps,
+    '&:hover': {
+      ...hoverProps,
+    },
+    '&:active': {
+      ...activeProps,
+    },
   };
 };

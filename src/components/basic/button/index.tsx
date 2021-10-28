@@ -30,7 +30,6 @@ const Styled = (props: ButtonProps) => {
     borderRadius: spacing.xs,
     cursor: 'pointer',
     opacity: props.disabled ? 0.7 : 1,
-    transition: 'color 0.3s, background-color 0.3s, opacity 0.3s',
     hover: {
       backgroundColor: `rgb(${hexToRgb(colorSet[1])}, 0.5)`,
     },

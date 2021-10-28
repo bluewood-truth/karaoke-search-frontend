@@ -15,6 +15,7 @@ export interface LayoutProps {
   left?: React.CSSProperties['left'];
   right?: React.CSSProperties['right'];
   textAlign?: React.CSSProperties['textAlign'];
+  letterSpacing?: React.CSSProperties['letterSpacing'];
   zIndex?: ZIndex;
 }
 
@@ -69,7 +70,7 @@ export interface BorderProps {
   borderWidth?: string;
 }
 
-interface BoxModelPropsUnion extends LayoutProps,
+export interface BoxModelPropsUnion extends LayoutProps,
     BackgroundProps,
     FontProps,
     SizeProps,

@@ -37,7 +37,6 @@ export const InputStyled = (props: InputProps | SelectProps) => {
     border: 'none',
     borderRadius: spacing.xs,
     opacity: props.disabled ? 0.7 : 1,
-    transition: 'background-color 0.2s, border 0.2s, box-shadow 0.2s',
     hover: {
       backgroundColor: `rgb(${hexToRgb(colorSet[1])}, 0.5)`,
     },

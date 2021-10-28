@@ -9,10 +9,11 @@ const globalStyles = css`
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
     letter-spacing: -0.05rem;
+    transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
   }
 
   html {
-    background-color: ${getMainColor()[0]}
+    background-color: ${getMainColor()[0]};
   }
 
   code {

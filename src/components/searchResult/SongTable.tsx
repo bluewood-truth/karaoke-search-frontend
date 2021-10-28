@@ -45,7 +45,7 @@ const SongTableHead = () => {
 const SongTableRow = (props: {song: Song}) => {
   const {song} = props;
   return (
-    <Flex className='tableRow' paddingY='sm'>
+    <Flex className='tableRow' paddingY='sm' hover={{backgroundColor: getMainColor()[1]}}>
       <Flex
         className='tdNumber'
         flex={widthRatio.number}
@@ -53,7 +53,8 @@ const SongTableRow = (props: {song: Song}) => {
         alignItems='center'
         color={getMainColor()[4]}
         fontWeight='bold'
-      >{`${song.karaoke}${song.songNumber}`}</Flex>
+        letterSpacing='0'
+      >{`${song.karaoke}_${song.songNumber}`}</Flex>
       <Stack
         className='tdTitle'
         flex={widthRatio.title}
