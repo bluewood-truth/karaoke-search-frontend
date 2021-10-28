@@ -1,7 +1,9 @@
 import axios from 'axios';
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Song} from 'types/domain';
+import {getCurrentUser} from 'utils/auth/authService';
+import checkIsOnLocalMyList from 'utils/localMyList/checkOnLocalMyList';
 
 const SONG_COUNT_PER_PAGE = 15;
 const SEARCH_API_URL = process.env.REACT_APP_SEARCH_API_URL;
@@ -13,6 +15,9 @@ const useSearchResult = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setLoading] = useState(false);
   const history = useHistory();
+  const isLoggedIn = useMemo(() => {
+    return getCurrentUser() !== null;
+  }, []);
 
   const initialize = useCallback(() => {
     setSongList([]);
@@ -20,16 +25,22 @@ const useSearchResult = () => {
     setPage(1);
   }, []);
 
-  const fetch = useCallback(async (searchQuery: string, page: number) => {
-    setLoading(true);
-    const data = await axios
-      .get(`${SEARCH_API_URL}${searchQuery}&page=${page}`)
-      .then((res) => res.data);
+  const fetch = useCallback(
+    async (searchQuery: string, page: number) => {
+      setLoading(true);
+      const data = await axios
+        .get(`${SEARCH_API_URL}${searchQuery}&page=${page}`)
+        .then((res) => res.data);
 
-    setIsLastPage(data.length < SONG_COUNT_PER_PAGE);
-    setLoading(false);
-    return data;
-  }, []);
+      if (!isLoggedIn) {
+        checkIsOnLocalMyList(data);
+      }
+      setIsLastPage(data.length < SONG_COUNT_PER_PAGE);
+      setLoading(false);
+      return data;
+    },
+    [isLoggedIn]
+  );
 
   const fetchMore = async () => {
     const data = await fetch(searchQuery, page + 1);
