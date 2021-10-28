@@ -16,6 +16,15 @@ const getStyleFromProps = (props: InputProps | SelectProps) => {
   };
 };
 
+const getHeight = (defaultProps: any, inputProps: any) => {
+  if (inputProps.height) {
+    return inputProps.height;
+  }
+
+  const fontSize: string = inputProps.fontSize ? inputProps.fontSize : defaultProps.fontSize;
+  return `calc(${fontSize} + ${spacing.sm})`;
+};
+
 export const InputStyled = (props: InputProps | SelectProps) => {
   const colorSet = mainColor;
   const inputProps = getStyleFromProps(props);
@@ -24,7 +33,7 @@ export const InputStyled = (props: InputProps | SelectProps) => {
     backgroundColor: colorSet[0],
     fontSize: fontSizes.sm,
     fontWeight: fontWeights.normal,
-    padding: `${spacing.xs} ${spacing.sm}`,
+    padding: `0 ${spacing.sm}`,
     border: 'none',
     borderRadius: spacing.xs,
     opacity: props.disabled ? 0.7 : 1,
@@ -46,6 +55,7 @@ export const InputStyled = (props: InputProps | SelectProps) => {
   return {
     ...defaultProps,
     ...inputProps,
+    height: getHeight(defaultProps, inputProps),
     '&:hover': {
       ...defaultProps.hover,
       ...inputProps.hover,
