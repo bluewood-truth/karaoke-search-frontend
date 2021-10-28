@@ -1,4 +1,4 @@
-import {Box, Flex, getMainColor} from 'components/basic';
+import {Box, Flex} from 'components/basic';
 import isDarkMode from 'utils/isDarkMode';
 import Logo from './Logo';
 import SearchForm from './SearchForm';
@@ -15,7 +15,6 @@ const NavigationBar = () => {
       alignItems='center'
       flexDirection='column'
       boxShadow={`0px 0px 15px rgba(0, 0, 0, ${isDarkMode() ? 0.75 : 0.25});`}
-      backgroundColor={getMainColor()[0]}
     >
       <Box position='absolute' zIndex='base'>
         <Flex width='container' justifyContent='space-between'>

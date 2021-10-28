@@ -23,7 +23,7 @@ const SearchResult = () => {
 
   return (
     <PageWrapper>
-      <Flex justifyContent='center' backgroundColor={getMainColor()[0]}>
+      <Flex justifyContent='center'>
         <Box width='container' padding='2.5em' color={getMainColor()[5]}>
           <SearchResultHeading heading={`'${keyword}' 검색 결과`} />
           <SongTable songList={songList} isLoading={isLoading} />

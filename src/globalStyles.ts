@@ -1,4 +1,5 @@
 import {css} from '@emotion/react';
+import { getMainColor } from 'components/basic';
 
 const globalStyles = css`
   * {
@@ -10,6 +11,10 @@ const globalStyles = css`
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
     letter-spacing: -0.05rem;
+  }
+
+  html {
+    background-color: ${getMainColor()[0]}
   }
 
   code {
