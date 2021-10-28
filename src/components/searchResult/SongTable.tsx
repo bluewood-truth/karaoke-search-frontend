@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Song} from 'types/domain';
 import {Box, Divider} from '../basic';
 import {getMainColor} from 'components/basic/colors';
@@ -6,6 +6,7 @@ import Flex from '../basic/flex';
 import Stack from '../basic/stack';
 import Loading from '../Loading';
 import IconButton from 'components/common/IconButton';
+import LocalMyListService from 'utils/localMyList/LocalMyListService';
 
 const widthRatio = {
   number: '120',
@@ -44,8 +45,29 @@ const SongTableHead = () => {
 
 const SongTableRow = (props: {song: Song}) => {
   const {song} = props;
+  const [isFavorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    setFavorite(song.isFavorite);
+  }, [song.isFavorite]);
+
+  const handleFavoriteButton = () => {
+    if (isFavorite) {
+      LocalMyListService.remove(song);
+    }
+    else {
+      LocalMyListService.add(song);
+    }
+
+    setFavorite(!isFavorite);
+  }
+
   return (
-    <Flex className='tableRow' paddingY='sm' hover={{backgroundColor: getMainColor()[1]}}>
+    <Flex
+      className='tableRow'
+      paddingY='sm'
+      hover={{backgroundColor: getMainColor()[1]}}
+    >
       <Flex
         className='tdNumber'
         flex={widthRatio.number}
@@ -76,7 +98,12 @@ const SongTableRow = (props: {song: Song}) => {
         justifyContent='center'
         alignItems='center'
       >
-        <IconButton src='heart_empty' width='24px' height='20px' />
+        <IconButton
+          onClick={handleFavoriteButton}
+          src={isFavorite ? 'heart_filled' : 'heart_empty'}
+          width='24px'
+          height='20px'
+        />
       </Flex>
     </Flex>
   );
@@ -124,7 +151,7 @@ const SongTable = (props: {songList: Song[]; isLoading: boolean}) => {
       <SongTableHead />
       <Stack>
         {songList.map((song, index) => (
-          <React.Fragment>
+          <React.Fragment key={index}>
             {index !== 0 && <Divider color={getMainColor()[2]} />}
             <SongTableRow song={song} key={index} />
           </React.Fragment>

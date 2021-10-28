@@ -10,4 +10,9 @@ export interface Song {
   songNumber: number;
   title: string;
   singer: string;
+  isFavorite: boolean;
+}
+
+export interface LocalMyList {
+  [key: string]: Song;
 }
