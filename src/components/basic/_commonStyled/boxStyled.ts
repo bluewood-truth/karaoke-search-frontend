@@ -1,6 +1,7 @@
 import getUnitValue from 'utils/getUnitValue';
 import {BoxProps} from '../box/types';
-import { fontSizes, fontWeights, sizes, spacing, zIndexes } from '../units';
+import {fontSizes, fontWeights, sizes, spacing, zIndexes} from '../units';
+import {BackgroundProps} from './types';
 
 const getMargin = (props: BoxProps) => {
   const {
@@ -124,10 +125,11 @@ const getLayoutProps = (props: BoxProps) => {
 };
 
 const getFontProps = (props: BoxProps) => {
+  const color = props.color;
   const fontSize = getUnitValue(fontSizes, props.fontSize);
   const fontWeight = getUnitValue(fontWeights, props.fontWeight);
 
-  return {fontSize, fontWeight};
+  return {color, fontSize, fontWeight};
 };
 
 const getBorder = (props: BoxProps) => {
@@ -137,6 +139,28 @@ const getBorder = (props: BoxProps) => {
   return {border, borderWidth, borderRadius};
 };
 
+const getBackground = (props: BackgroundProps) => {
+  const {
+    background,
+    backgroundImage,
+    backgroundColor,
+    backgroundRepeat,
+    backgroundPosition,
+    backgroundSize,
+    backgroundClip,
+  } = props;
+
+  return {
+    background,
+    backgroundImage,
+    backgroundColor,
+    backgroundRepeat,
+    backgroundPosition,
+    backgroundSize,
+    backgroundClip,
+  };
+};
+
 export const BoxStyled = (props: BoxProps) => {
   const layout = getLayoutProps(props);
   const fontProps = getFontProps(props);
@@ -144,6 +168,7 @@ export const BoxStyled = (props: BoxProps) => {
   const margins = getMargin(props);
   const paddings = getPadding(props);
   const border = getBorder(props);
+  const background = getBackground(props);
 
   return {
     ...layout,
@@ -152,5 +177,6 @@ export const BoxStyled = (props: BoxProps) => {
     ...margins,
     ...paddings,
     ...border,
+    ...background,
   };
 };

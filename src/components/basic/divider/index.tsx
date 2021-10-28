@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
-import {mainColor} from 'components/basic/colors';
+import {getMainColor} from 'components/basic/colors';
 import {DividerProps} from './types';
 
 const Styled = (props: DividerProps) => {
-  const colorSet = mainColor;
+  const colorSet = getMainColor();
   const orientation = props.orientation ? props.orientation : 'horizontal';
   const {color, width, opacity} = props;
   const defaultStyle = {

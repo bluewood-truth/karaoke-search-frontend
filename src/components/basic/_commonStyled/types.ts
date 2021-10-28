@@ -23,6 +23,16 @@ export interface FontProps {
   fontWeight?: FontWeight;
 }
 
+export interface BackgroundProps {
+  background?: React.CSSProperties['background'];
+  backgroundImage?: React.CSSProperties['backgroundImage'];
+  backgroundColor?: React.CSSProperties['backgroundColor'];
+  backgroundRepeat?: React.CSSProperties['backgroundRepeat'];
+  backgroundPosition?: React.CSSProperties['backgroundPosition'];
+  backgroundSize?: React.CSSProperties['backgroundSize'];
+  backgroundClip?: React.CSSProperties['backgroundClip'];
+}
+
 export interface SizeProps extends PaddingProps, MarginProps {
   width?: Size;
   minWidth?: Size;
@@ -60,6 +70,7 @@ export interface BorderProps {
 
 export interface BoxModelProps
   extends LayoutProps,
+    BackgroundProps,
     FontProps,
     SizeProps,
     BorderProps {}

@@ -1,4 +1,3 @@
-import {mainColor} from 'components/basic/colors';
 import filterUndefined from 'utils/filterUndefined';
 import hexToRgb from 'utils/hexToRgb';
 import {InputProps} from '../input/types';
@@ -6,6 +5,7 @@ import {SelectProps} from '../select/types';
 import {BoxModelProps} from './types';
 import {fontSizes, fontWeights, spacing} from '../units';
 import {BoxStyled} from './boxStyled';
+import { getMainColor } from '..';
 
 const getStyleFromProps = (props: InputProps | SelectProps) => {
   const boxModelProps: BoxModelProps = props;
@@ -26,7 +26,7 @@ const getHeight = (defaultProps: any, inputProps: any) => {
 };
 
 export const InputStyled = (props: InputProps | SelectProps) => {
-  const colorSet = mainColor;
+  const colorSet = getMainColor();
   const inputProps = getStyleFromProps(props);
   const defaultProps = {
     color: colorSet[4],

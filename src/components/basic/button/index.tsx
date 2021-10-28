@@ -5,7 +5,7 @@ import {fontSizes, fontWeights, spacing} from '../units';
 import {BoxModelProps} from '../_commonStyled/types';
 import filterUndefined from 'utils/filterUndefined';
 import {BoxStyled} from '../_commonStyled/boxStyled';
-import {mainColor} from 'components/basic/colors';
+import {getMainColor} from 'components/basic/colors';
 import hexToRgb from 'utils/hexToRgb';
 
 const getStyleFromProps = (props: ButtonProps) => {
@@ -18,7 +18,7 @@ const getStyleFromProps = (props: ButtonProps) => {
 };
 
 const Styled = (props: ButtonProps) => {
-  const colorSet = mainColor;
+  const colorSet = getMainColor();
   const inputStyle = getStyleFromProps(props);
   const defaultStyle = {
     color: colorSet[4],
