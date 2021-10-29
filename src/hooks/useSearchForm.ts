@@ -68,10 +68,9 @@ const useSearchForm = () => {
     keyword: '',
   });
 
-  const initialize = () => {
-    dispatch({ type: 'INITIALIZE' });
-    console.log('initialize');
-  };
+  const initialize = useCallback(() => {
+    dispatch({type: 'INITIALIZE'});
+  }, []);
 
   const updateForm = useCallback((searchQuery: string) => {
     const query = parseQuery(searchQuery);
@@ -113,16 +112,18 @@ const useSearchForm = () => {
   };
 
   useEffect(() => {
+    console.log('url changed: searchForm');
     const query = parseQuery(history.location.search);
     if (
       Object.keys(query).length === 0 ||
       Object.values(query).some((item) => !item)
     ) {
-      dispatch({type: 'INITIALIZE'});
+      initialize();
     } else {
       updateForm(history.location.search);
     }
-  }, [history.location, updateForm]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     karaokeList,
@@ -133,6 +134,7 @@ const useSearchForm = () => {
     handleKaraoke,
     handleSearchBy,
     handleKeyword,
+    updateForm,
   };
 };
 

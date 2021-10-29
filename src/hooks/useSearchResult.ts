@@ -27,19 +27,23 @@ const useSearchResult = () => {
 
   const fetch = useCallback(
     async (searchQuery: string, page: number) => {
-      setLoading(true);
-      const data = await axios
-        .get(`${SEARCH_API_URL}${searchQuery}&page=${page}`)
-        .then((res) => res.data);
+      try {
+        setLoading(true);
+        const data = await axios
+          .get(`${SEARCH_API_URL}${searchQuery}&page=${page}`)
+          .then((res) => res.data);
 
-      if (!isLoggedIn) {
-        checkIsOnLocalMyList(data);
+        if (!isLoggedIn) {
+          checkIsOnLocalMyList(data);
+        }
+        setIsLastPage(data.length < SONG_COUNT_PER_PAGE);
+        setLoading(false);
+        return data;
+      } catch (e) {
+        history.push('/');
       }
-      setIsLastPage(data.length < SONG_COUNT_PER_PAGE);
-      setLoading(false);
-      return data;
     },
-    [isLoggedIn]
+    [history, isLoggedIn]
   );
 
   const fetchMore = async () => {
