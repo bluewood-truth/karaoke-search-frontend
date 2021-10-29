@@ -1,4 +1,4 @@
-import {Box, Button, Flex, getMainColor} from 'components/basic';
+import {Box, Button, Flex} from 'components/basic';
 import PageWrapper from 'components/PageWrapper';
 import SearchResultHeading from 'components/searchResult/SearchResultHeader';
 import SongTable from 'components/searchResult/SongTable';
@@ -28,11 +28,11 @@ const PageNavigation = (props: {page: number; maxPage: number}) => {
 
   return (
     <Flex justifyContent='center' paddingY='md'>
-      <Button className='pageDown' disabled={page === 1} onClick={pageDown}>
+      <Button className='pageDown' disabled={page <= 1} onClick={pageDown}>
         ◀
       </Button>
       <Box>{`${page} / ${maxPage}`}</Box>
-      <Button className='pageUp' disabled={page === maxPage} onClick={pageUp}>
+      <Button className='pageUp' disabled={page >= maxPage} onClick={pageUp}>
         ▶
       </Button>
     </Flex>
@@ -45,13 +45,11 @@ const MyList = () => {
 
   return (
     <PageWrapper>
-      <Flex justifyContent='center'>
-        <Box width='container' padding='2.5em' color={getMainColor()[5]}>
-          <SearchResultHeading heading={`마이리스트`} />
-          <SongTable songList={partOfMyList} isLoading={isLoading} />
-          <PageNavigation page={page} maxPage={maxPage} />
-        </Box>
-      </Flex>
+      <Box width='container' padding='2.5em'>
+        <SearchResultHeading heading={`마이리스트`} />
+        <SongTable songList={partOfMyList} isLoading={isLoading} />
+        <PageNavigation page={page} maxPage={maxPage} />
+      </Box>
     </PageWrapper>
   );
 };

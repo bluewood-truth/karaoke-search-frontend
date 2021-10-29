@@ -1,4 +1,4 @@
-import {Box, Button, Flex, getMainColor} from 'components/basic';
+import {Box, Button, Flex} from 'components/basic';
 import PageWrapper from 'components/PageWrapper';
 import SearchResultHeading from 'components/searchResult/SearchResultHeader';
 import SongTable from 'components/searchResult/SongTable';
@@ -23,15 +23,11 @@ const SearchResult = () => {
 
   return (
     <PageWrapper>
-      <Flex justifyContent='center'>
-        <Box width='container' padding='2.5em' color={getMainColor()[5]}>
-          <SearchResultHeading heading={`'${keyword}' 검색 결과`} />
-          <SongTable songList={songList} isLoading={isLoading} />
-          {!isLoading && !isLastPage && (
-            <FetchMoreButton fetchMore={fetchMore} />
-          )}
-        </Box>
-      </Flex>
+      <Box width='container' padding='2.5em'>
+        <SearchResultHeading heading={`'${keyword}' 검색 결과`} />
+        <SongTable songList={songList} isLoading={isLoading} />
+        {!isLoading && !isLastPage && <FetchMoreButton fetchMore={fetchMore} />}
+      </Box>
     </PageWrapper>
   );
 };
