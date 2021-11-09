@@ -1,19 +1,21 @@
 import axios from 'axios';
 import {useMemo} from 'react';
-import {SearchQuery, Song} from 'types/domain';
+import {Song} from 'types/domain';
 import useAsync from './_common/useAsync';
 
-const BASE_URL = 'http://34.64.87.191:8080/api/search';
+const SEARCH_API_URL = `${process.env.REACT_APP_SEARCH_API_URL}`;
 
 axios.interceptors.request.use(async (config) => {
   config.headers['Content-Type'] = 'application/json';
   return config;
 });
 
-const useSearch = (query: SearchQuery) => {
+const useSearch = (searchQuery: string, page: number) => {
   const {isLoading, data, isSuccess} = useAsync<Song[]>(() => {
-    return axios.get<Song[]>(BASE_URL, {params: query}).then((res) => res.data);
-  }, []);
+    return axios
+      .get<Song[]>(`${SEARCH_API_URL}${searchQuery}&page=${page}`)
+      .then((res) => res.data);
+  }, [searchQuery, page]);
 
   const searchResult = useMemo(() => {
     if (isSuccess) {
